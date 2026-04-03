@@ -101,3 +101,31 @@ export const updatePartnerNeedStatus = async (req: Request, res: Response) => {
   }
 };
 
+export const updatePartnerPassword = async (req: Request, res: Response) => {
+  const { currentPassword, newPassword } = req.body;
+  const partnerId = req.user.id;
+
+  try {
+    const result = await db.query('SELECT password FROM partners WHERE id = $1 LIMIT 1', [partnerId]);
+    const partner = result.rows[0];
+
+    if (!partner) return res.status(404).json({ error: 'Partner not found.' });
+
+    if (partner.password) {
+      const isPasswordValid = await bcrypt.compare(currentPassword, partner.password);
+      if (!isPasswordValid) {
+        return res.status(400).json({ error: 'Invalid current password.' });
+      }
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    await db.query('UPDATE partners SET password = $1 WHERE id = $2', [hashedPassword, partnerId]);
+
+    return res.status(200).json({ message: 'Password updated successfully.' });
+  } catch (error) {
+    console.error('Update partner password error:', error);
+    return res.status(500).json({ error: 'Failed to update password.' });
+  }
+};

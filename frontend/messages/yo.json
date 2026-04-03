@@ -1,0 +1,64 @@
+{
+  "HomePage": {
+    "title": "NaijaNeed",
+    "tagline": "Sọ ohun ti o nilo fun wa.",
+    "cta": "Sọ ohun ti o nilo",
+    "mission": "Gbigba awọn aini ilu lati wa ojutu si wọn."
+  },
+  "SubmitPage": {
+    "title": "Pin Aini Rẹ",
+    "fullName": "Orukọ Kikun",
+    "phone": "Nọmba Foonu",
+    "email": "Adirẹsi Imeeli",
+    "state": "Ipinle",
+    "lga": "Ijọba Ibile",
+    "area": "Adugbo / Agbegbe (Iyanfẹ)",
+    "category": "Ẹka",
+    "needLiteral": "Sọ ohun ti o nilo",
+    "submit": "Fi Aini Mi Ranṣẹ",
+    "submitting": "Nfi ranṣẹ...",
+    "disclaimer": "Nipa fifiranṣẹ, o gba pe a le pin data rẹ ti a ko darukọ rẹ pẹlu awọn alabaṣiṣẹpọ lati pese awọn ojutu.",
+    "selectState": "Yan Ipinle",
+    "selectLga": "Yan Ijọba Ibile",
+    "selectCategory": "Yan Ẹka",
+    "confirmDetails": "Jọwọ jẹrisi awọn alaye rẹ tabi ṣe imudojuiwọn wọn loke.",
+    "categories": {
+      "edu": "Ẹkọ (Ile-iwe, Olukọ)",
+      "water": "Omi & Imototo (Kanga, Atunṣe)",
+      "health": "Ilera (Awọn ile-iwosan, Awọn oogun)",
+      "power": "Ina (Ayipada ina, Awọn onirin)",
+      "roads": "Oju-ona & Awọn amayederun (Awọn koto, Awọn afara)",
+      "security": "Abo (Ọlọpa, Imọlẹ)",
+      "waste": "Idoti (Egbin, Sisọnu)",
+      "transport": "Irinna (Ibi iduro bosi, Ijamba)",
+      "jobs": "Iṣẹ & Ikẹkọ ọgbọn",
+      "markets": "Ọja & Atilẹyin Iṣowo Kekere",
+      "housing": "Ile & Ibugbe",
+      "agri": "Ogbin & Atilẹyin Ounje",
+      "youth": "Idagbasoke awọn ọdọ ati ere idaraya",
+      "env": "Idanaduro ogbara",
+      "others": "Awọn ọran miiran"
+    }
+  },
+  "Dashboard": {
+    "title": "Itan Awọn Aini Mi",
+    "hello": "Pẹlẹ",
+    "citizen": "Ara ilu",
+    "noNeeds": "O ko ti pin eyikeyi aini sibẹsibẹ.",
+    "submitAnother": "Fi Aini Miiran Ranṣẹ",
+    "loading": "Nfesi..."
+  },
+  "Common": {
+    "success": "Aṣeyọri",
+    "error": "Àṣìṣe",
+    "info": "Alaye",
+    "warning": "Ikilọ",
+    "close": "Paade",
+    "networkError": "Àṣìṣe nẹtiwọọki. Jọwọ ṣayẹwo asopọ rẹ.",
+    "submissionSuccess": "A ti fi aini rẹ ranṣẹ ni aṣeyọri!",
+    "submissionError": "Àṣìṣe kan wà nígbà tí a ń fi aini rẹ ranṣẹ. Jọwọ gbiyanju lẹẹkansii.",
+    "view": "Wo",
+    "dismiss": "Yọ kuro",
+    "dateInfo": "Ọjọ́: {date}"
+  }
+}

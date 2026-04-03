@@ -1,0 +1,64 @@
+{
+  "HomePage": {
+    "title": "NaijaNeed",
+    "tagline": "Gwa anyị ihe ị chọrọ.",
+    "cta": "Gwa anyị ihe ị chọrọ",
+    "mission": "Ijikọta mkpa obodo iji jikọọ ha na ngwọta."
+  },
+  "SubmitPage": {
+    "title": "Kekọrịta Mkpa Gị",
+    "fullName": "Aha zuru ezu",
+    "phone": "Nọmba ekwentị",
+    "email": "Adreesị ozi-e",
+    "state": "Steeti",
+    "lga": "Gọọmentị Ime Obodo",
+    "area": "Mpaghara / Agbataobi (Nhọrọ)",
+    "category": "Ụdị",
+    "needLiteral": "Gwa anyị ihe ị chọrọ",
+    "submit": "Nyefee mkpa m",
+    "submitting": "N'itinye akwụkwọ...",
+    "disclaimer": "Site n'itinye akwụkwọ, ị kwetara na enwere ike ịkekọrịta ozi gị na ndị mmekọ iji nye azịza.",
+    "selectState": "Họrọ Steeti",
+    "selectLga": "Họrọ LGAs",
+    "selectCategory": "Họrọ Ụdị",
+    "confirmDetails": "Kwenye nkọwa gị ma ọ bụ melite ha n'elu.",
+    "categories": {
+      "edu": "Agụmakwụkwọ (Ụlọ akwụkwọ, Ndị nkuzi)",
+      "water": "Mmiri & Idị ọcha (Boreholes, Repairs)",
+      "health": "Nlekọta ahụike (Clinics, Drugs)",
+      "power": "Ọkụ latrik (Transformers, Wiring)",
+      "roads": "Ụzọ & Akụrụngwa (Potholes, Bridges)",
+      "security": "Nchebe ọha (ndị uwe ojii, ọkụ)",
+      "waste": "Nchịkwa unyi (Refuse, Dumping)",
+      "transport": "Gbọmgbọm (Bus Stops, Traffic)",
+      "jobs": "Ọrụ & Ọzụzụ",
+      "markets": "Ahịa & nkwado azụmahịa obere",
+      "housing": "Ụlọ & Ibe",
+      "agri": "Ọrụ ugbo & nkwado nri",
+      "youth": "Egwuregwu na mmepe ndị ntorobịa",
+      "env": "Ihe mbuze",
+      "others": "Okwu ndị ọzọ"
+    }
+  },
+  "Dashboard": {
+    "title": "Akụkọ ihe mere eme mkpa m",
+    "hello": "Ndéèwó",
+    "citizen": "Citizen",
+    "noNeeds": "Ị kekọrịtabeghị mkpa ọ bụla.",
+    "submitAnother": "Nyefee mkpa ọzọ",
+    "loading": "N'ife..."
+  },
+  "Common": {
+    "success": "Ihe ịga nke ọma",
+    "error": "Njehie",
+    "info": "Ozi",
+    "warning": "Ịdọ aka ná ntị",
+    "close": "Mechie",
+    "networkError": "Njehie netwọk. Biko lelee njikọ gị.",
+    "submissionSuccess": "E wefere mkpa gị nke ọma!",
+    "submissionError": "Enwere njehie n'inyefe mkpa gị. Biko gbalịa ọzọ.",
+    "view": "Lelee",
+    "dismiss": "Chụpụ",
+    "dateInfo": "Ụbọchị: {date}"
+  }
+}

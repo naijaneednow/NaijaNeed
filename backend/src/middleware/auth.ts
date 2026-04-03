@@ -20,8 +20,6 @@ export const authenticateUser = async (req: Request, res: Response, next: NextFu
   }
 
   try {
-    // We join states and lgas here. PostgreSQL uses json_build_object for similar nested structures if needed, 
-    // or we just flatten them for simplicity.
     const query = `
       SELECT *
       FROM users
@@ -35,14 +33,34 @@ export const authenticateUser = async (req: Request, res: Response, next: NextFu
       return res.status(401).json({ error: 'Invalid device session.' });
     }
 
-    // Update last active
     await db.query('UPDATE users SET last_active = NOW() WHERE id = $1', [user.id]);
-
     req.user = user;
     next();
   } catch (error) {
     console.error('Auth error:', error);
     return res.status(500).json({ error: 'Authentication failed.' });
+  }
+};
+
+export const optionalAuthenticateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.cookies.nn_device;
+
+  if (!token) {
+    return next();
+  }
+
+  try {
+    const query = `SELECT * FROM users WHERE device_token = $1 LIMIT 1`;
+    const result = await db.query(query, [token]);
+    const user = result.rows[0];
+
+    if (user) {
+      await db.query('UPDATE users SET last_active = NOW() WHERE id = $1', [user.id]);
+      req.user = user;
+    }
+    next();
+  } catch (error) {
+    next(); // Silently continue even if auth fails
   }
 };
 

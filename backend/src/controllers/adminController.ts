@@ -174,6 +174,11 @@ export const getPartners = async (req: Request, res: Response) => {
 export const createPartner = async (req: Request, res: Response) => {
   const partnerData = req.body;
   try {
+    if (partnerData.password) {
+      const salt = await bcrypt.genSalt(10);
+      partnerData.password = await bcrypt.hash(partnerData.password, salt);
+    }
+
     const keys = Object.keys(partnerData);
     const values = Object.values(partnerData);
     const placeholders = keys.map((_, i) => `$${i + 1}`).join(', ');
@@ -228,15 +233,50 @@ export const getAnalytics = async (req: Request, res: Response) => {
 };
 
 export const exportNeedsCSV = async (req: Request, res: Response) => {
+  const { status, stateId, lgaId, categoryId, search, ids } = req.query;
+
   try {
-    const query = `
+    let query = `
       SELECT n.id, u.name as user_name, u.state_id, u.lga_id, c.name as category_name, n.description, n.status, n.created_at
       FROM needs n
       LEFT JOIN users u ON n.user_id = u.id
       LEFT JOIN categories c ON n.category_id = c.id
-      ORDER BY n.created_at DESC
+      WHERE 1=1
     `;
-    const result = await db.query(query);
+    const params: any[] = [];
+    let paramIndex = 1;
+
+    if (ids) {
+      const idArray = (ids as string).split(',');
+      query += ` AND n.id = ANY($${paramIndex++}::int[])`;
+      params.push(idArray);
+    } else {
+      if (status) {
+        query += ` AND n.status = $${paramIndex++}`;
+        params.push(status);
+      }
+      if (stateId) {
+        query += ` AND u.state_id = $${paramIndex++}`;
+        params.push(stateId);
+      }
+      if (lgaId) {
+        query += ` AND u.lga_id = $${paramIndex++}`;
+        params.push(lgaId);
+      }
+      if (categoryId) {
+        query += ` AND n.category_id = $${paramIndex++}`;
+        params.push(categoryId);
+      }
+      if (search) {
+        query += ` AND (n.description ILIKE $${paramIndex} OR u.name ILIKE $${paramIndex})`;
+        params.push(`%${search}%`);
+        paramIndex++;
+      }
+    }
+
+    query += ` ORDER BY n.created_at DESC`;
+
+    const result = await db.query(query, params);
     const needs = result.rows;
 
     const headers = ['ID', 'User', 'State', 'LGA', 'Category', 'Description', 'Status', 'Date'];
@@ -246,7 +286,7 @@ export const exportNeedsCSV = async (req: Request, res: Response) => {
       n.state_id || 'N/A',
       n.lga_id || 'N/A',
       n.category_name,
-      n.description.replace(/,/g, ' '),
+      n.description.replace(/,/g, ' ').replace(/\n/g, ' '),
       n.status,
       new Date(n.created_at).toISOString()
     ]);
@@ -262,3 +302,31 @@ export const exportNeedsCSV = async (req: Request, res: Response) => {
   }
 };
 
+export const updateAdminPassword = async (req: Request, res: Response) => {
+  const { currentPassword, newPassword } = req.body;
+  const adminId = req.user.id;
+
+  try {
+    const result = await db.query('SELECT password FROM users WHERE id = $1 LIMIT 1', [adminId]);
+    const user = result.rows[0];
+
+    if (!user) return res.status(404).json({ error: 'User not found.' });
+
+    if (user.password) {
+      const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+      if (!isPasswordValid) {
+        return res.status(400).json({ error: 'Invalid current password.' });
+      }
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    await db.query('UPDATE users SET password = $1 WHERE id = $2', [hashedPassword, adminId]);
+
+    return res.status(200).json({ message: 'Password updated successfully.' });
+  } catch (error) {
+    console.error('Update password error:', error);
+    return res.status(500).json({ error: 'Failed to update password.' });
+  }
+};

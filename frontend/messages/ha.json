@@ -1,0 +1,64 @@
+{
+  "HomePage": {
+    "title": "NaijaNeed",
+    "tagline": "Faɗa mana abin da kuke bukata.",
+    "cta": "Faɗa mana abin da kuke bukata",
+    "mission": "Haɗa bukatun jama'a don haɗa su da mafita."
+  },
+  "SubmitPage": {
+    "title": "Raba Bukatarku",
+    "fullName": "Cikakken Suna",
+    "phone": "Lambar Waya",
+    "email": "Adireshin Imel",
+    "state": "Jiha",
+    "lga": "Karamar Hukuma",
+    "area": "Yanki / Unguwa (Zabuka)",
+    "category": "Rukunin",
+    "needLiteral": "Faɗa mana abin da kuke bukata",
+    "submit": "Aika Bukatara",
+    "submitting": "Ana aikawa...",
+    "disclaimer": "Ta hanyar aikawa, kun yarda cewa ana iya raba bayanan ku ga abokan tarayya don samar da mafita.",
+    "selectState": "Zaɓi Jiha",
+    "selectLga": "Zaɓi Karamar Hukuma",
+    "selectCategory": "Zaɓi Rukunin",
+    "confirmDetails": "Tabbatar da bayanan ku ko sabunta su a sama.",
+    "categories": {
+      "edu": "Ilimi (Makarantu, Malamai)",
+      "water": "Ruwa & Tsafta (Rijiyoyin burtsatse, Gyare-gyare)",
+      "health": "Lafiya (Likita, Magunguna)",
+      "power": "Lantarki (Transformer, Wayoyi)",
+      "roads": "Hanyoyi & Gine-gine (Ramukan titi, Gadoji)",
+      "security": "Tsaro (Yan sanda, Fitilu)",
+      "waste": "Shara (Zubar da shara)",
+      "transport": "Sufuri (Tashar mota, Tituna)",
+      "jobs": "Aiki & Horar da Kwarewa",
+      "markets": "Kasuwanni & Tallafin Karamin Kasuwanci",
+      "housing": "Gidaje & Matsuguni",
+      "agri": "Noma & Tallafin Abinci",
+      "youth": "Wasanni da Ci gaban Matasa",
+      "env": "Drainage & Iko da Ambaliya",
+      "others": "Sauran matsaloli"
+    }
+  },
+  "Dashboard": {
+    "title": "Tarihin Bukatuna",
+    "hello": "Sannu",
+    "citizen": "Citizen",
+    "noNeeds": "Ba ku raba kowane bukata ba tukunna.",
+    "submitAnother": "Aika Wani Bukatar",
+    "loading": "Ana lodi..."
+  },
+  "Common": {
+    "success": "Nasarawa",
+    "error": "Kuskure",
+    "info": "Bayanai",
+    "warning": "Gargaɗi",
+    "close": "Rufe",
+    "networkError": "Kuskuren hanyar sadarwa. Da fatan za a duba haɗin yanar gizon ku.",
+    "submissionSuccess": "An yi nasarar aika buƙatarku!",
+    "submissionError": "An sami kuskure yayin aika buƙatarku. Da fatan za a sake gwadawa.",
+    "view": "Duba",
+    "dismiss": "Kora",
+    "dateInfo": "Kwanan wata: {date}"
+  }
+}

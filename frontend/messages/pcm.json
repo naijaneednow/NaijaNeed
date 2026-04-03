@@ -1,0 +1,64 @@
+{
+  "HomePage": {
+    "title": "NaijaNeed",
+    "tagline": "Yarn us wetin you need.",
+    "cta": "Tell us wetin you need",
+    "mission": "Gather wetin people need so we go find who go solve am."
+  },
+  "SubmitPage": {
+    "title": "Share Wetin You Need",
+    "fullName": "Your Full Name",
+    "phone": "Your Phone Number",
+    "email": "Your Email Address",
+    "state": "State",
+    "lga": "LGA",
+    "area": "Area / Where you dey stay (Optional)",
+    "category": "Category",
+    "needLiteral": "Yarn us wetin you need",
+    "submit": "Submit My Need",
+    "submitting": "E dey load...",
+    "disclaimer": "As you submit so, you gree say we go show your matter to partners so dem fit help solve am.",
+    "selectState": "Choose State",
+    "selectLga": "Choose LGA",
+    "selectCategory": "Choose Category",
+    "confirmDetails": "Check your details or change am for up.",
+    "categories": {
+      "edu": "School mata (Education)",
+      "water": "Water mata (Boreholes, Repairs)",
+      "health": "Health mata (Clinics, Drugs)",
+      "power": "Light mata (Electricity)",
+      "roads": "Road mata (Potholes, Bridges)",
+      "security": "Security mata (Police, Lights)",
+      "waste": "Shara mata (Refuse, Dumping)",
+      "transport": "Transport mata (Bus Stops, Traffic)",
+      "jobs": "Work mata (Jobs & Training)",
+      "markets": "Market mata (Small Business Support)",
+      "housing": "House mata (Shelter)",
+      "agri": "Food and Farm mata (Agriculture)",
+      "youth": "Youth mata (Development & Sports)",
+      "env": "Erosion mata (Drainage)",
+      "others": "Other mata"
+    }
+  },
+  "Dashboard": {
+    "title": "Wetin I don submit",
+    "hello": "How far",
+    "citizen": "Citizen",
+    "noNeeds": "You never yarn us wetin you need before.",
+    "submitAnother": "Yarn us another need",
+    "loading": "E dey load..."
+  },
+  "Common": {
+    "success": "Success",
+    "error": "Error",
+    "info": "Info",
+    "warning": "Warning",
+    "close": "Close",
+    "networkError": "Network error. Check your data or wifi.",
+    "submissionSuccess": "We don receive your matter! Well done.",
+    "submissionError": "Wahala dey as we try send your matter. Try again abeg.",
+    "view": "Check am",
+    "dismiss": "Comot am",
+    "dateInfo": "Date: {date}"
+  }
+}
