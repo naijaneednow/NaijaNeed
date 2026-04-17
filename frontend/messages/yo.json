@@ -21,7 +21,21 @@
     "selectState": "Yan Ipinle",
     "selectLga": "Yan Ijọba Ibile",
     "selectCategory": "Yan Ẹka",
-    "confirmDetails": "Jọwọ jẹrisi awọn alaye rẹ tabi ṣe imudojuiwọn wọn loke.",
+    "confirmDetails": "Jẹrisi awọn alaye rẹ tabi ṣe imudojuiwọn wọn loke.",
+    "returningUser": "Njẹ o ti forukọsilẹ tẹlẹ?",
+    "signInWithPhone": "Wọle pẹlu nọmba foonu rẹ",
+    "signIn": "Wọle",
+    "registerInstead": "Olumulo tuntun? Forukọsilẹ nibi",
+    "password": "Ọrọigbaniwọle",
+    "forgotPassword": "Ṣe o gbagbe ọrọigbaniwọle rẹ?",
+    "resetPasswordTitle": "Tunto ọrọigbaniwọle",
+    "enterPhoneForReset": "Tẹ nọmba foonu rẹ sii lati gba koodu atunto.",
+    "sendCode": "Fi koodu ranṣẹ",
+    "enterOtpHint": "Tẹ koodu nọmba mẹfa ti a firanṣẹ si foonu rẹ ki o yan ọrọigbaniwọle tuntun.",
+    "otpPlaceholder": "Koodu nọmba mẹfa",
+    "newPasswordPlaceholder": "Ọrọigbaniwọle Tuntun",
+    "resetAndLogin": "Tunto & Wọle",
+    "backToSignIn": "Pada si apakan Iwọle",
     "categories": {
       "edu": "Ẹkọ (Ile-iwe, Olukọ)",
       "water": "Omi & Imototo (Kanga, Atunṣe)",
@@ -59,6 +73,18 @@
     "submissionError": "Àṣìṣe kan wà nígbà tí a ń fi aini rẹ ranṣẹ. Jọwọ gbiyanju lẹẹkansii.",
     "view": "Wo",
     "dismiss": "Yọ kuro",
-    "dateInfo": "Ọjọ́: {date}"
+    "dateInfo": "Ọjọ́: {date}",
+    "passwordUpdated": "Ọrọigbaniwọle ti ni imudojuiwọn ni aṣeyọri!",
+    "loginSuccess": "O ti wọle ni aṣeyọri!",
+    "loginError": "A kò rí àkàǹtì rẹ. Jọwọ forukọsilẹ.",
+    "passwordRequired": "Tẹ ọrọigbaniwọle rẹ sii lati tẹsiwaju"
+  },
+  "Banner": {
+    "messages": [
+      "📢 Atunṣe tuntun: Atilẹyin fun awọn iṣowo kekere ti bẹrẹ ni ipinlẹ marun-un!",
+      "🎁 Èrè: Forukọsilẹ loni lati jẹ ki a yẹ iṣẹ rẹ wo ni kiakia.",
+      "⚡ Imudojuiwọn: Diẹ sii ju kanga omi 50 tuntun ni a ti ṣi ni ọsẹ yii.",
+      "🌟 Ìmọ̀ràn: Alaye kikun yoo ṣe iranlọwọ fun wa lati wa ojutu ni kiakia."
+    ]
   }
 }

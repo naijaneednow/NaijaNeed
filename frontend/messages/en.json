@@ -22,6 +22,20 @@
     "selectLga": "Select LGA",
     "selectCategory": "Select Category",
     "confirmDetails": "Confirm your details or update them above.",
+    "returningUser": "Already registered?",
+    "signInWithPhone": "Sign in with your phone",
+    "signIn": "Sign In",
+    "registerInstead": "New user? Register here",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPasswordTitle": "Reset Password",
+    "enterPhoneForReset": "Enter your phone number to receive a reset code.",
+    "sendCode": "Send Code",
+    "enterOtpHint": "Enter the 6-digit code sent to your phone and choose a new password.",
+    "otpPlaceholder": "6-digit code",
+    "newPasswordPlaceholder": "New Password",
+    "resetAndLogin": "Reset & Login",
+    "backToSignIn": "Back to Sign In",
     "categories": {
       "edu": "Education (Schools, Teachers)",
       "water": "Water & Sanitation (Boreholes, Repairs)",
@@ -67,7 +81,16 @@
     "timelineAssigned": "Assigned",
     "timelineResolved": "Resolved",
     "smsHistory": "SMS Notifications",
-    "noSms": "No SMS notifications recorded."
+    "noSms": "No SMS notifications recorded.",
+    "security": "Account Security",
+    "passwordProtect": "Password Protection",
+    "passwordEnabled": "ENABLED",
+    "passwordDisabled": "NOT SET",
+    "passwordLabel": "New Password",
+    "passwordConfirm": "Confirm New Password",
+    "passwordHint": "Add a password to your account to prevent unauthorized access from other devices.",
+    "updatePassword": "Update Password",
+    "setPassword": "Set Password"
   },
   "Common": {
     "success": "Success",
@@ -80,6 +103,24 @@
     "submissionError": "There was an error submitting your need. Please try again.",
     "view": "View",
     "dismiss": "Dismiss",
-    "dateInfo": "Date: {date}"
+    "dateInfo": "Date: {date}",
+    "passwordUpdated": "Password updated successfully!",
+    "loginSuccess": "Signed in successfully!",
+    "loginError": "Account not found. Please register.",
+    "passwordRequired": "Enter password to continue",
+    "passwordTooShort": "Password must be at least 4 characters.",
+    "passwordsDoNotMatch": "Passwords do not match.",
+    "resetCodeSent": "Reset code sent to your phone.",
+    "errorSendingCode": "Failed to send reset code. Please try again.",
+    "passwordResetSuccess": "Password reset successfully! You are now logged in.",
+    "resetError": "Failed to reset password. Please check the code."
+  },
+  "Banner": {
+    "messages": [
+      "📢 New arrival: Support for small businesses is now live in 5 states!",
+      "🎁 Bonus: Register today and get priority review for your submissions.",
+      "⚡ Update: 50+ new boreholes commissioned this week across Nigeria.",
+      "🌟 Tip: Detailed descriptions help us find the right solution faster."
+    ]
   }
 }

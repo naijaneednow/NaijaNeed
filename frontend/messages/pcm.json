@@ -22,6 +22,20 @@
     "selectLga": "Choose LGA",
     "selectCategory": "Choose Category",
     "confirmDetails": "Check your details or change am for up.",
+    "returningUser": "You don register before?",
+    "signInWithPhone": "Sign in with your phone number",
+    "signIn": "Sign In",
+    "registerInstead": "New user? Register for here",
+    "password": "Password",
+    "forgotPassword": "You don forget password?",
+    "resetPasswordTitle": "Change password",
+    "enterPhoneForReset": "Enter your phone number to collect reset code.",
+    "sendCode": "Send Code",
+    "enterOtpHint": "Enter the 6-code wey we send to your phone and choose new password.",
+    "otpPlaceholder": "6-code",
+    "newPasswordPlaceholder": "New Password",
+    "resetAndLogin": "Change & Sign In",
+    "backToSignIn": "Go back to sign in",
     "categories": {
       "edu": "School mata (Education)",
       "water": "Water mata (Boreholes, Repairs)",
@@ -59,6 +73,18 @@
     "submissionError": "Wahala dey as we try send your matter. Try again abeg.",
     "view": "Check am",
     "dismiss": "Comot am",
-    "dateInfo": "Date: {date}"
+    "dateInfo": "Date: {date}",
+    "passwordUpdated": "Password updated successfully!",
+    "loginSuccess": "You don sign in well well!",
+    "loginError": "We no see your account. Abeg register.",
+    "passwordRequired": "Enter password to continue"
+  },
+  "Banner": {
+    "messages": [
+      "📢 New arrival: Support for small business don start for 5 states!",
+      "🎁 Bonus: Register today make we review your need fast fast.",
+      "⚡ Update: More than 50 new boreholes we don open this week for Nigeria.",
+      "🌟 Tip: If you tell us everything well well, we go find solution sharp sharp."
+    ]
   }
 }

@@ -51,7 +51,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-500 overflow-hidden">
 
       {/* ── Header ── */}
-      <header className="absolute top-6 right-6 flex items-center space-x-3 z-20">
+      <header className="absolute top-14 right-6 flex items-center space-x-3 z-20">
         <div className="relative">
           <button
             onClick={() => setIsLangOpen(!isLangOpen)}
@@ -123,14 +123,14 @@ export default function Home() {
             )}
           </div>
 
-          <p className="mt-12 text-sm text-gray-400 italic font-medium">
+          <p className="md:mt-12 mt-6 text-sm text-gray-400 italic font-medium">
             {t('mission')}
           </p>
         </div>
 
         {/* Right: Nigeria Map */}
-        <div className="flex-1 lg:min-h-screen h-72 lg:h-auto bg-gray-50 dark:bg-gray-800/50 relative">
-          <div className="absolute inset-0 m-4 lg:m-6 rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
+        <div className="flex-1 lg:min-h-screen h-72 lg:h-auto bg-gray-50 dark:bg-gray-800/50 relative border-4 border-red-500">
+          <div className="absolute inset-0 m-4 lg:m-6 rounded-3xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 ">
             <NigeriaMap />
           </div>
         </div>

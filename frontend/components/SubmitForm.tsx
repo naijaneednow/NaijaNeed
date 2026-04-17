@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../lib/api';
 import { useSubmitNeed } from '../hooks/useNeeds';
-import { useCurrentUser } from '../hooks/useCurrentUser';
+import { useCurrentUser, useLogin, useRequestReset, useResetPassword } from '../hooks/useCurrentUser';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 import Location from 'nigeria-geo';
@@ -29,6 +29,16 @@ export default function SubmitNeedForm() {
   const [media, setMedia] = useState<File | null>(null);
   const { success, error: toastError } = useAppToast();
   const [loading, setLoading] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(false);
+  const [password, setPassword] = useState('');
+  const [showPasswordField, setShowPasswordField] = useState(false);
+  const [isResetMode, setIsResetMode] = useState(false);
+  const [resetStep, setResetStep] = useState<'request' | 'verify'>('request');
+  const [resetOtp, setResetOtp] = useState('');
+  const [resetNewPassword, setResetNewPassword] = useState('');
+  const loginMutation = useLogin();
+  const requestResetMutation = useRequestReset();
+  const resetPasswordMutation = useResetPassword();
 
   useEffect(() => {
     if (user) {
@@ -82,6 +92,62 @@ export default function SubmitNeedForm() {
     }
   };
 
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+    if (!formData.phone) return;
+    setLoading(true);
+    try {
+      await loginMutation.mutateAsync({ phone: formData.phone, password });
+      success('loginSuccess');
+      setIsLoginMode(false);
+      setShowPasswordField(false);
+      setPassword('');
+    } catch (err: any) {
+      if (err.response?.data?.requiresPassword) {
+        setShowPasswordField(true);
+        toastError('passwordRequired');
+      } else {
+        toastError(err.response?.data?.error || 'loginError');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRequestReset = async () => {
+    if (!formData.phone) return;
+    setLoading(true);
+    try {
+      await requestResetMutation.mutateAsync(formData.phone);
+      success('resetCodeSent');
+      setResetStep('verify');
+    } catch (err: any) {
+      toastError(err.response?.data?.error || 'errorSendingCode');
+    } finally {
+      setLoading(false);
+    }
+  };
+ 
+  const handleResetPassword = async () => {
+    if (!resetOtp || !resetNewPassword) return;
+    setLoading(true);
+    try {
+      await resetPasswordMutation.mutateAsync({ 
+        phone: formData.phone, 
+        otp: resetOtp, 
+        newPassword: resetNewPassword 
+      });
+      success('passwordResetSuccess');
+      setIsResetMode(false);
+      setIsLoginMode(false);
+      setResetStep('request');
+    } catch (err: any) {
+      toastError(err.response?.data?.error || 'resetError');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const categoryKeys = [
     'edu', 'water', 'health', 'power', 'roads', 'security', 
     'waste', 'transport', 'jobs', 'markets', 'housing', 
@@ -104,29 +170,160 @@ export default function SubmitNeedForm() {
 
       <div className="animate-in fade-in slide-in-from-top-4 duration-500 text-gray-800 dark:text-gray-200">
         {!user && !loadingUser && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-3 md:mb-4 transition-all">
-            <div>
-              <label className="block text-sm font-semibold mb-1">{t('fullName')}</label>
-              <input
-                name="name"
-                value={formData.name}
-                placeholder="Ada Obi"
-                className="w-full p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-1">{t('phone')}</label>
-              <input
-                name="phone"
-                value={formData.phone}
-                placeholder="080 1234 5678"
-                className="w-full p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <div className="mb-6">
+            {isLoginMode ? (
+              <div className="space-y-4">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  {t('signInWithPhone')}
+                </p>
+                <div className="flex flex-col md:flex-row gap-3">
+                  <input
+                    name="phone"
+                    value={formData.phone}
+                    placeholder="080 1234 5678"
+                    className="flex-1 p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                    onChange={handleChange}
+                    required
+                  />
+                  {showPasswordField && (
+                    <input
+                      type="password"
+                      value={password}
+                      placeholder={t('password')}
+                      className="flex-1 p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  )}
+                  <button
+                    type="button"
+                    onClick={handleLogin}
+                    disabled={loading}
+                    className="px-6 py-2.5 md:py-3 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:bg-green-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    {loading ? <Loader2 className="animate-spin" size={20} /> : t('signIn')}
+                  </button>
+                </div>
+                <div className="flex justify-between items-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsResetMode(true);
+                        setIsLoginMode(false);
+                      }}
+                      className="text-xs text-gray-500 hover:underline"
+                    >
+                      {t('forgotPassword')}
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsLoginMode(false)}
+                    className="text-sm text-green-600 hover:underline"
+                  >
+                    {t('registerInstead')}
+                  </button>
+                </div>
+              ) : isResetMode ? (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-bold">{t('resetPasswordTitle')}</h3>
+                  {resetStep === 'request' ? (
+                    <div className="space-y-4">
+                      <p className="text-sm text-gray-500">{t('enterPhoneForReset')}</p>
+                      <div className="flex flex-col md:flex-row gap-3">
+                        <input
+                          name="phone"
+                          value={formData.phone}
+                          placeholder="080 1234 5678"
+                          className="flex-1 p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                          onChange={handleChange}
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={handleRequestReset}
+                          disabled={loading}
+                          className="px-6 py-2.5 md:py-3 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:bg-green-700 transition-all flex items-center justify-center gap-2"
+                        >
+                          {loading ? <Loader2 className="animate-spin" size={20} /> : t('sendCode')}
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <p className="text-sm text-gray-500">{t('enterOtpHint')}</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input
+                          type="text"
+                          value={resetOtp}
+                          onChange={(e) => setResetOtp(e.target.value)}
+                          placeholder={t('otpPlaceholder')}
+                          className="p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                          required
+                        />
+                        <input
+                          type="password"
+                          value={resetNewPassword}
+                          onChange={(e) => setResetNewPassword(e.target.value)}
+                          placeholder={t('newPasswordPlaceholder')}
+                          className="p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                          required
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleResetPassword}
+                        disabled={loading}
+                        className="w-full py-3 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:bg-green-700 transition-all flex items-center justify-center gap-2"
+                      >
+                        {loading ? <Loader2 className="animate-spin" size={20} /> : t('resetAndLogin')}
+                      </button>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setIsResetMode(false)}
+                    className="text-sm text-gray-500 hover:underline"
+                  >
+                    {t('backToSignIn')}
+                  </button>
+                </div>
+            ) : (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-semibold">{t('fullName')}</label>
+                  <button
+                    type="button"
+                    onClick={() => setIsLoginMode(true)}
+                    className="text-xs text-green-600 hover:underline"
+                  >
+                    {t('returningUser')}
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 transition-all">
+                  <div>
+                    <input
+                      name="name"
+                      value={formData.name}
+                      placeholder="Ada Obi"
+                      className="w-full p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      name="phone"
+                      value={formData.phone}
+                      placeholder="080 1234 5678"
+                      className="w-full p-2.5 md:p-3 rounded-xl border border-gray-200 dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

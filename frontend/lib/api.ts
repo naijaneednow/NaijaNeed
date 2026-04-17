@@ -13,10 +13,10 @@ api.interceptors.response.use(
     // AND the request wasn't already to /api/auth/me (to avoid loop during auth check)
     if (error.response?.status === 401) {
       if (typeof window !== 'undefined') {
-        const isMeCall = error.config.url?.includes('/api/auth/me');
+        const isAuthCall = error.config.url?.includes('/api/auth/');
         const isHomePage = window.location.pathname === '/';
         
-        if (!isHomePage && !isMeCall) {
+        if (!isHomePage && !isAuthCall) {
           window.location.href = '/';
         }
       }

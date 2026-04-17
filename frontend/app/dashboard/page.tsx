@@ -10,7 +10,7 @@ import NeedDetailPanel from '@/components/NeedDetailPanel';
 import { useTranslations } from 'next-intl';
 import { useLocale } from '@/hooks/useLocale';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, Inbox, Languages, Filter, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, Inbox, Languages, Filter, X, Settings, LogOut, Shield } from 'lucide-react';
 import { getCategoryIcon, getStatusConfig } from '@/lib/needsUtils';
 
 const LANGUAGES = [
@@ -43,6 +43,11 @@ export default function Dashboard() {
       router.push('/');
     }
   }, [user, authLoading, router]);
+
+  const handleSignOut = () => {
+    document.cookie = 'nn_device=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    window.location.href = '/';
+  };
 
   // Count needs per status
   const statusCounts = useMemo(() => {
@@ -151,16 +156,31 @@ export default function Dashboard() {
 
             <ThemeToggle />
 
-            {/* Greeting avatar */}
+            {/* Greeting avatar / Profile link */}
             <div className="flex items-center gap-2 pl-2 border-l dark:border-gray-700">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
+              <button
+                onClick={() => router.push('/profile')}
+                className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-white text-sm font-bold shrink-0 hover:ring-2 ring-green-500/50 transition-all"
+                title={t('security')}
+              >
                 {firstName.charAt(0).toUpperCase()}
-              </div>
+              </button>
               <div className="hidden sm:block">
-                <p className="text-sm font-semibold leading-tight">
+                <button 
+                  onClick={() => router.push('/profile')}
+                  className="text-sm font-semibold leading-tight hover:text-green-600 dark:hover:text-green-400 transition-colors block text-left"
+                >
                   {t('hello')} {firstName} 👋
-                </p>
-                <p className="text-xs text-gray-400">{user.phone}</p>
+                </button>
+                <div className="flex items-center gap-2">
+                  <p className="text-[10px] text-gray-400">{user.phone}</p>
+                  <button 
+                    onClick={handleSignOut}
+                    className="text-[10px] text-red-500 hover:underline flex items-center gap-0.5"
+                  >
+                    Logout
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -168,7 +188,7 @@ export default function Dashboard() {
       </header>
 
       {/* ── Main ── */}
-      <main className="max-w-3xl mx-auto px-4 sm:px-8 py-8 space-y-6">
+      <main className="max-w-3xl mx-auto px-4 sm:px-8 py-8 pb-32 space-y-6">
 
         {/* Mobile greeting */}
         <div className="sm:hidden">
@@ -359,15 +379,20 @@ export default function Dashboard() {
             <p className="text-gray-400 text-sm mt-1">{t('noNeedsHint')}</p>
           </div>
         )}
-
-        {/* CTA */}
-        <button
-          onClick={() => router.push('/submit')}
-          className="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-[1.01] active:scale-[0.99] text-sm tracking-wide"
-        >
-          {t('submitAnother')}
-        </button>
       </main>
+
+      {/* Floating CTA */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white dark:from-gray-950 via-white/80 dark:via-gray-950/80 to-transparent pointer-events-none z-40">
+        <div className="max-w-3xl mx-auto pointer-events-auto">
+          <button
+            onClick={() => router.push('/submit')}
+            className="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-bold rounded-2xl shadow-2xl hover:shadow-xl transition-all transform hover:scale-[1.01] active:scale-[0.99] text-sm tracking-wide flex items-center justify-center gap-2"
+          >
+            <span className="text-xl">+</span>
+            {t('submitAnother')}
+          </button>
+        </div>
+      </div>
 
       {/* ── Detail Panel ── */}
       {selectedNeed && (

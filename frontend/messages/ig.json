@@ -22,6 +22,20 @@
     "selectLga": "Họrọ LGAs",
     "selectCategory": "Họrọ Ụdị",
     "confirmDetails": "Kwenye nkọwa gị ma ọ bụ melite ha n'elu.",
+    "returningUser": "Ì debanyelarị aha?",
+    "signInWithPhone": "Jiri nọmba ekwentị gị banye",
+    "signIn": "Banye",
+    "registerInstead": "Onye ọhụrụ? Debanye aha ebe a",
+    "password": "Paswọdu",
+    "forgotPassword": "Ị chefuola paswọdu gị?",
+    "resetPasswordTitle": "Tọgharịa paswọdu",
+    "enterPhoneForReset": "Tinye nọmba ekwentị gị ka ị nweta koodu nrụpụta.",
+    "sendCode": "Ziga koodu",
+    "enterOtpHint": "Tinye koodu nọmba isii e doro na ekwentị gị ma họrọ paswọdu ọhụrụ.",
+    "otpPlaceholder": "Koodu nọmba isii",
+    "newPasswordPlaceholder": "Paswọdu ọhụrụ",
+    "resetAndLogin": "Tọgharịa & Banye",
+    "backToSignIn": "Laghachi na Nbanye",
     "categories": {
       "edu": "Agụmakwụkwọ (Ụlọ akwụkwọ, Ndị nkuzi)",
       "water": "Mmiri & Idị ọcha (Boreholes, Repairs)",
@@ -59,6 +73,18 @@
     "submissionError": "Enwere njehie n'inyefe mkpa gị. Biko gbalịa ọzọ.",
     "view": "Lelee",
     "dismiss": "Chụpụ",
-    "dateInfo": "Ụbọchị: {date}"
+    "dateInfo": "Ụbọchị: {date}",
+    "passwordUpdated": "Emelitere paswọdu nke ọma!",
+    "loginSuccess": "Nbanye nke ọma!",
+    "loginError": "Achọpụtaghị akaụntù. Biko debanye aha.",
+    "passwordRequired": "Gupụta paswọọdụ ka ị gaa n'ihu"
+  },
+  "Banner": {
+    "messages": [
+      "📢 Ihe ọhụrụ: Nkwado maka obere azụmahịa adịla n'iji na steeti ise!",
+      "🎁 Bonus: Debanye aha taa maka nleba anya pụrụ iche.",
+      "⚡ Mmelite: Ihe karịrị olulu mmiri 50 ọhụrụ emepụtara n'izu a.",
+      "🌟 Ndụmọdụ: Nkọwa zuru ezu na-enyere anyị aka ịchọta azịza ọsọ ọsọ."
+    ]
   }
 }

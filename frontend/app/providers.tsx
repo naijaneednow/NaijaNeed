@@ -15,12 +15,18 @@ import ig from '@/messages/ig.json';
 
 const messagesMap = { en, pcm, yo, ha, ig };
 
+import ScrollingBanner from '@/components/ScrollingBanner';
+
 function IntlWrapper({ children }: { children: React.ReactNode }) {
   const { locale } = useLocale();
   const messages = useMemo(() => messagesMap[locale] || en, [locale]);
 
+  // Safely extract banner messages
+  const bannerMessages = (messages as any).Banner?.messages || [];
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <ScrollingBanner messages={bannerMessages} speed={80} />
       {children}
     </NextIntlClientProvider>
   );

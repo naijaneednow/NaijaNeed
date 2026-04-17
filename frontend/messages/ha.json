@@ -22,6 +22,20 @@
     "selectLga": "Zaɓi Karamar Hukuma",
     "selectCategory": "Zaɓi Rukunin",
     "confirmDetails": "Tabbatar da bayanan ku ko sabunta su a sama.",
+    "returningUser": "Kun riga kun yi rajista?",
+    "signInWithPhone": "Shiga tare da lambar wayar ku",
+    "signIn": "Shiga",
+    "registerInstead": "Sabon mai amfani? Yi rajista a nan",
+    "password": "Kalmar sirri",
+    "forgotPassword": "Ka manta kalmar sirri?",
+    "resetPasswordTitle": "Sake saita kalmar sirri",
+    "enterPhoneForReset": "Shigar da lambar wayar ku don samun lambar sake saiti.",
+    "sendCode": "Aika Lambar",
+    "enterOtpHint": "Shigar da lambar sirri guda 6 da aka aika zuwa wayarka kuma ka zaɓi sabuwar kalmar sirri.",
+    "otpPlaceholder": "Lambar sirri guda 6",
+    "newPasswordPlaceholder": "Sabuwar kalmar sirri",
+    "resetAndLogin": "Sake saita & Shiga",
+    "backToSignIn": "Koma kan Shiga",
     "categories": {
       "edu": "Ilimi (Makarantu, Malamai)",
       "water": "Ruwa & Tsafta (Rijiyoyin burtsatse, Gyare-gyare)",
@@ -59,6 +73,18 @@
     "submissionError": "An sami kuskure yayin aika buƙatarku. Da fatan za a sake gwadawa.",
     "view": "Duba",
     "dismiss": "Kora",
-    "dateInfo": "Kwanan wata: {date}"
+    "dateInfo": "Kwanan wata: {date}",
+    "passwordUpdated": "An yi nasarar sabunta kalmar sirri!",
+    "loginSuccess": "An shiga cikin nasara!",
+    "loginError": "Ba a sami lissafi ba. Da fatan za a yi rajista.",
+    "passwordRequired": "Shigar da kalmar sirri don ci gaba"
+  },
+  "Banner": {
+    "messages": [
+      "📢 Sabuwar fitowa: Tallafin ƙananan kasuwanci yanzu yana raye a jihohi 5!",
+      "🎁 Alheri: Yi rajista a yau don samun duba na musamman.",
+      "⚡ Sabuntawa: Sama da sabbin rijiyoyin burtsatse 50 aka buɗe a wannan makon.",
+      "🌟 Shawara: Bayani mai zurfi yana taimaka mana samun mafita da sauri."
+    ]
   }
 }
