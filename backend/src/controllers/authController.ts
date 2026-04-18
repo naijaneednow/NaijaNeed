@@ -65,7 +65,7 @@ export const registerOrLoginCandidate = async (req: Request, res: Response) => {
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
     });
@@ -152,7 +152,7 @@ export const loginCandidate = async (req: Request, res: Response) => {
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
     });
@@ -288,7 +288,7 @@ export const resetPassword = async (req: Request, res: Response) => {
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000
     });
@@ -371,7 +371,7 @@ export const resetPasswordWithPin = async (req: Request, res: Response) => {
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000
     });

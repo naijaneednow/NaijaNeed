@@ -12,6 +12,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Trust proxy for secure cookies on Render/Heroku
+app.set('trust proxy', 1);
+
 app.use('/uploads', express.static('uploads'));
 
 // Security Middleware

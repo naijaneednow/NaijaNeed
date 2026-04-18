@@ -42,6 +42,14 @@ export const submitNeed = async (req: Request, res: Response) => {
        let deviceToken;
 
        if (user) {
+         // If user has a password, they MUST use the login flow, not submit-need registration
+         if (user.password) {
+           return res.status(401).json({ 
+             error: 'passwordRequired',
+             requiresPassword: true 
+           });
+         }
+
          deviceToken = user.device_token || uuidv4();
          // Update existing user profile with new info if provided
          await db.query(
@@ -73,7 +81,7 @@ export const submitNeed = async (req: Request, res: Response) => {
        res.cookie('nn_device', deviceToken, {
          httpOnly: true,
          secure: process.env.NODE_ENV === 'production',
-         sameSite: 'lax',
+         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
          path: '/',
          maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
        });

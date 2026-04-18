@@ -13,7 +13,6 @@ declare global {
 
 export const authenticateUser = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.nn_device;
-  console.log("token", token,req.cookies);
 
   if (!token) {
     return res.status(401).json({ error: 'Not authenticated. Proceed to homepage.' });

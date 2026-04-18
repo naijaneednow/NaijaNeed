@@ -84,7 +84,13 @@ export default function SubmitNeedForm() {
       success('submissionSuccess');
       router.push('/dashboard');
     } catch (err: any) {
-      toastError(err.response?.data?.message || err.message || 'submissionError');
+      if (err.response?.data?.requiresPassword) {
+        setIsLoginMode(true);
+        setShowPasswordField(true);
+        toastError('passwordRequired');
+      } else {
+        toastError(err.response?.data?.message || err.message || 'submissionError');
+      }
     } finally {
       setLoading(false);
     }
