@@ -22,12 +22,14 @@ export const getPublicMapData = async (req: Request, res: Response) => {
 };
 
 export const submitNeed = async (req: Request, res: Response) => {
-  const { category_id, description, name, phone, email, stateId, lgaId, area } = req.body;
+  let { category_id, description, name, phone, email, stateId, lgaId, area } = req.body;
   let user_id = req.user?.id;
 
   if (!description) {
     return res.status(400).json({ error: 'Please describe your need.' });
   }
+
+  if (phone) phone = phone.trim();
 
   try {
     // 0. Handle registration/login if not authenticated
@@ -80,8 +82,8 @@ export const submitNeed = async (req: Request, res: Response) => {
        // Set cookie for atomic session creation
        res.cookie('nn_device', deviceToken, {
          httpOnly: true,
-         secure: process.env.NODE_ENV === 'production',
-         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+         secure: true,
+         sameSite: 'none',
          path: '/',
          maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
        });

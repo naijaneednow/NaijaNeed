@@ -8,11 +8,13 @@ import { sendSMS } from '../utils/sms';
 const otpStore = new Map<string, { code: string; expires: number }>();
 
 export const registerOrLoginCandidate = async (req: Request, res: Response) => {
-  const { phone, name, email, stateId, lgaId, area } = req.body;
+  let { phone, name, email, stateId, lgaId, area } = req.body;
 
   if (!phone) {
     return res.status(400).json({ error: 'Phone number is required.' });
   }
+  
+  phone = phone.trim();
 
   try {
     // 1. Check if user already exists
@@ -64,8 +66,8 @@ export const registerOrLoginCandidate = async (req: Request, res: Response) => {
     // 3. Set standard cookie
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: true, // Always true for Render HTTPS
+      sameSite: 'none', // Required for cross-site (Vercel -> Render)
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
     });
@@ -89,18 +91,20 @@ export const registerOrLoginCandidate = async (req: Request, res: Response) => {
 };
 
 export const loginCandidate = async (req: Request, res: Response) => {
-  const { phone } = req.body;
+  let { phone } = req.body;
 
   if (!phone) {
     return res.status(400).json({ error: 'Phone number is required.' });
   }
+
+  phone = phone.trim();
 
   try {
     const findResult = await db.query('SELECT * FROM users WHERE phone = $1 LIMIT 1', [phone]);
     const user = findResult.rows[0];
 
     if (!user) {
-      return res.status(404).json({ error: 'Account not found. Please register first.' });
+      return res.status(401).json({ error: 'Account not found. Please register first.' });
     }
 
     const { password } = req.body;
@@ -151,8 +155,8 @@ export const loginCandidate = async (req: Request, res: Response) => {
 
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: true, // Always true for Render HTTPS
+      sameSite: 'none', // Required for cross-site (Vercel -> Render)
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
     });
@@ -287,8 +291,8 @@ export const resetPassword = async (req: Request, res: Response) => {
     // Auto login
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000
     });
@@ -370,8 +374,8 @@ export const resetPasswordWithPin = async (req: Request, res: Response) => {
 
     res.cookie('nn_device', deviceToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/',
       maxAge: 365 * 24 * 60 * 60 * 1000
     });

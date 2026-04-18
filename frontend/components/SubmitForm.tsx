@@ -73,7 +73,10 @@ export default function SubmitNeedForm() {
 
       const formDataToSend = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
-        if (value) formDataToSend.append(key, value);
+        if (value) {
+          const processedValue = key === 'phone' ? value.trim() : value;
+          formDataToSend.append(key, processedValue);
+        }
       });
       if (media) {
         formDataToSend.append('media', media);
@@ -114,7 +117,7 @@ export default function SubmitNeedForm() {
     if (!formData.phone) return;
     setLoading(true);
     try {
-      await loginMutation.mutateAsync({ phone: formData.phone, password });
+      await loginMutation.mutateAsync({ phone: formData.phone.trim(), password });
       success('loginSuccess');
       setIsLoginMode(false);
       setShowPasswordField(false);
