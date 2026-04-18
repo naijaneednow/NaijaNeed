@@ -20,7 +20,8 @@ const allowedOrigins = [
   process.env.FRONTEND_URL || 'http://localhost:3000',
   'http://192.168.56.1:3000',
   'http://192.168.56.1:3001',
-  'http://localhost:3001'
+  'http://localhost:3001',
+  "https://naija-need.vercel.app"
 ];
 
 app.use(cors({
